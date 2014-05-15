@@ -33,8 +33,8 @@ PING_FREQUENCY = 10 # seconds
 
 class CheckGMail:
     def __init__(self):
-        self.ind = appindicator.Indicator("new-gmail-indicator",
-                                           "indicator-messages",
+        self.ind = appindicator.Indicator("debian-doc-menu",
+                                           "debian-doc-menu",
                                            appindicator.CATEGORY_APPLICATION_STATUS)
         self.ind.set_status(appindicator.STATUS_ACTIVE)
         self.ind.set_attention_icon("new-messages-red")
@@ -45,10 +45,14 @@ class CheckGMail:
     def menu_setup(self):
         self.menu = gtk.Menu()
 
+        self.hello_item = gtk.MenuItem("Hello")
+        self.hello_item.connect("activate", self.quit)
         self.quit_item = gtk.MenuItem("Quit")
         self.quit_item.connect("activate", self.quit)
+        self.hello_item.show()
         self.quit_item.show()
         self.menu.append(self.quit_item)
+        self.menu.append(self.hello_item)
 
     def main(self):
         self.check_mail()
@@ -59,7 +63,7 @@ class CheckGMail:
         sys.exit(0)
 
     def check_mail(self):
-        messages, unread = self.gmail_checker('myaddress@gmail.com','mypassword')
+        messages, unread = self.gmail_checker('paul.green.dev@gmail.com','python619#G')
         if unread > 0:
             self.ind.set_status(appindicator.STATUS_ATTENTION)
         else:
