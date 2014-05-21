@@ -37,7 +37,7 @@ class CheckGMail:
                                            "debian-doc-menu",
                                            appindicator.CATEGORY_APPLICATION_STATUS)
         self.ind.set_status(appindicator.STATUS_ACTIVE)
-        self.ind.set_attention_icon("new-messages-red")
+        self.ind.set_attention_icon("new-messages-blue")
 
         self.menu_setup()
         self.ind.set_menu(self.menu)
